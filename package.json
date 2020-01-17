@@ -1,0 +1,44 @@
+{
+  "name": "tdd-todolist-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
+    "start": "tsc && node dist/index.js",
+    "lint": "tslint -p tsconfig.json"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "lcov"
+    ],
+    "all": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Seidel-Michael/tdd-todolist-backend.git"
+  },
+  "author": "",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Seidel-Michael/tdd-todolist-backend/issues"
+  },
+  "homepage": "https://github.com/Seidel-Michael/tdd-todolist-backend#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "mocha": "^7.0.0",
+    "nyc": "^15.0.0",
+    "source-map-support": "^0.5.16",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.0.0-beta0",
+    "typescript": "^3.7.5"
+  }
+}
