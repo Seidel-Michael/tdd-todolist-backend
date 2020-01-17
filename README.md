@@ -1,1 +1,3 @@
 # tdd-todolist-backend
+
+![](https://github.com/Seidel-Michael/tdd-todolist-backend/workflows/ci/badge.svg)

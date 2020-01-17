@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
-    "start": "tsc && node dist/index.js"
+    "start": "tsc && node dist/index.js",
+    "lint": "tslint -p tsconfig.json"
   },
   "nyc": {
     "extension": [
