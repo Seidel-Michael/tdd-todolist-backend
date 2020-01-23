@@ -32,13 +32,22 @@
   "homepage": "https://github.com/Seidel-Michael/tdd-todolist-backend#readme",
   "devDependencies": {
     "@types/chai": "^4.2.7",
+    "@types/chai-as-promised": "^7.1.2",
     "@types/mocha": "^5.2.7",
+    "@types/node": "^13.1.8",
+    "@types/sinon": "^7.5.1",
+    "@types/slonik": "^21.4.0",
     "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
     "mocha": "^7.0.0",
     "nyc": "^15.0.0",
+    "sinon": "^8.1.1",
     "source-map-support": "^0.5.16",
     "ts-node": "^8.6.2",
     "tslint": "^6.0.0-beta0",
     "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "slonik": "^21.4.2"
   }
 }
