@@ -25,14 +25,22 @@ export class DbConnection {
         } catch (error) {
             if (error instanceof ConnectionError) {
                 throw new Error('Connection to database failed.');
-            } 
-            
+            }
+
             throw new Error('Oops... something went wrong.');
         }
     }
 
     public async changeTodoState(id: string, state: boolean) {
-        throw new Error('Not implemented!');
+        try {
+            await this.pool.query(sql`UPDATE todolist.todos SET state=${state} WHERE id=${`{${id}}`}`);
+        } catch (error) {
+            if (error instanceof ConnectionError) {
+                throw new Error('Connection to database failed.');
+            }
+
+            throw new Error('Oops... something went wrong.');
+        }
     }
 
     public async getTodos() {
