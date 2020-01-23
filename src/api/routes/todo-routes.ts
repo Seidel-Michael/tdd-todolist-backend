@@ -1,5 +1,8 @@
-import * as Router from 'koa-router';
+import Router from 'koa-router';
 import { DbConnection } from '../../db/db-connection';
+import { TodoController } from '../controllers/todo-controller';
+
+const BASE_URL = '/api/v1/todos';
 
 export class TodoRoutes
 {
@@ -7,6 +10,10 @@ export class TodoRoutes
 
     constructor(connection: DbConnection)
     {
-        throw Error('Not implemented!')
+        this.router = new Router();
+
+        TodoController.connection = connection;
+
+        this.router.post(`${BASE_URL}`, TodoController.addTodo);
     }
 }

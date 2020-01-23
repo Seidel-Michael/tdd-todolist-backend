@@ -2,7 +2,7 @@ import { DbConnection } from './db/db-connection';
 import { createPool } from 'slonik';
 import { Api } from './api/api';
 
-const pool = createPool('postgresql://postgres:mysecretpassword@localhost:5432/todolist');
+/*const pool = createPool('postgresql://postgres:mysecretpassword@localhost:5432/todolist');
 const connection = new DbConnection(pool);
 
 const api = new Api(connection);
@@ -15,4 +15,4 @@ api.app.listen(PORT)
     })
     .on('listening', () => {
         console.log(`Server listening on port ${PORT}`);
-    });
+    });*/

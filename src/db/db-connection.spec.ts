@@ -2,11 +2,11 @@ import { DbConnection } from './db-connection';
 import { expect } from 'chai';
 import * as chai from 'chai'
 import * as sinon from 'sinon';
-var chaiAsPromised = require("chai-as-promised");
+var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 import { normalizeQuery } from '../../test-helper/normalizeQuery';
 
-import { DatabasePoolType, ConnectionError, NotFoundError } from 'slonik';
+import { DatabasePoolType, ConnectionError } from 'slonik';
 
 
 describe('DbConnection', () => {
