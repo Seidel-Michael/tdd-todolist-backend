@@ -11,7 +11,7 @@ export class DbConnection
 
     public async addTodo(title: string)
     {
-        await this.pool.query(sql`INSERT INTO todos(title, state) VALUES (${title}, true)`);
+        await this.pool.query(sql`INSERT INTO todolist.todos(title, state) VALUES (${title}, true)`);
     }
 
     public async removeTodo(id: string)

@@ -1,6 +1,5 @@
-export function hello(name: string): string
-{
-    return `Hello ${name}!`;
-}
+import {DbConnection} from './db/db-connection';
+import {createPool} from 'slonik';
 
-export default hello;
+let connection = new DbConnection(createPool('postgresql://postgres:mysecretpassword@localhost:5432/todolist'));
+connection.addTodo('Ich bin ein Test');

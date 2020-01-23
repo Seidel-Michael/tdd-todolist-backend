@@ -35,7 +35,7 @@ describe.only('DbConnection', () => {
             await connection.addTodo('abcdefg');
 
             expect(poolStub.query.callCount).to.equal(1);
-            expect(normalizeQuery(poolStub.query.firstCall.args[0].sql)).to.equal('INSERT INTO todos(title, state) VALUES ($1, true)');
+            expect(normalizeQuery(poolStub.query.firstCall.args[0].sql)).to.equal('INSERT INTO todolist.todos(title, state) VALUES ($1, true)');
             expect(poolStub.query.firstCall.args[0].values).to.deep.equal(['abcdefg']);
         });
     });

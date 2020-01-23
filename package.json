@@ -2,10 +2,10 @@
   "name": "tdd-todolist-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
-    "start": "tsc && node dist/index.js",
+    "start": "tsc && node dist/src/index.js",
     "lint": "tslint -p tsconfig.json"
   },
   "nyc": {
