@@ -6,7 +6,7 @@ var chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
 import {normalizeQuery} from '../../test-helper/normalizeQuery';
 
-import {DatabasePoolType} from 'slonik';
+import {DatabasePoolType, ConnectionError} from 'slonik';
 
 
 describe.only('DbConnection', () => {
@@ -21,15 +21,17 @@ describe.only('DbConnection', () => {
     });
 
     describe('addTodo', () => {
-        it('should reject with TypeError if title is undefined');
+        it('should reject with Error if database connection failed', async () => {
+            poolStub.query.rejects(new ConnectionError('getaddrinfo ENOTFOUND postgresql postgresql:5432'));
+            
+            return expect(connection.addTodo('abcdefg')).to.be.rejectedWith('Connection to database failed.');
+        });
 
-        it('should reject with TypeError if title is null');
-
-        it('should reject with TypeError if title is not a number');
-        it('should reject with TypeError if title is not an object');
-
-        it('should reject with Error if database connection failed');
-        it('should reject with Error if insert into database failed');
+        it('should reject with Error if insert into database failed', () => {
+            poolStub.query.rejects(new Error('error: relation "todos" does not exist'));
+            
+            return expect(connection.addTodo('abcdefg')).to.be.rejectedWith('Oops... something went wrong.');
+        });
 
         it('should insert todo in database and resolve', async () => {
             await connection.addTodo('abcdefg');
