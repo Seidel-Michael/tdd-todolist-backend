@@ -1,4 +1,5 @@
 import { DatabasePoolType, sql, ConnectionError, NotFoundError } from 'slonik';
+import { TodoItem } from '../models/todo-item';
 
 export class DbConnection {
     private pool: DatabasePoolType;
@@ -43,7 +44,18 @@ export class DbConnection {
         }
     }
 
-    public async getTodos() {
-        throw new Error('Not implemented!');
+    public async getTodos(): Promise<TodoItem[]> {
+        let result;
+        try {
+            result = await this.pool.any<TodoItem>(sql`SELECT * FROM todolist.todos`);
+        } catch (error) {
+            if (error instanceof ConnectionError) {
+                throw new Error('Connection to database failed.');
+            }
+
+            throw new Error('Oops... something went wrong.');
+        }
+
+        return result;
     }
 }
