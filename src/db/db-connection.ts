@@ -1,4 +1,4 @@
-import { DatabasePoolType, sql, ConnectionError, NotFoundError } from 'slonik';
+import { DatabasePoolType, sql, ConnectionError } from 'slonik';
 import { TodoItem } from '../models/todo-item';
 
 export class DbConnection {

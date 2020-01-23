@@ -1,7 +1,7 @@
 import { DbConnection } from './db-connection';
 import { expect } from 'chai';
-import * as chai from 'chai'
-import * as sinon from 'sinon';
+import chai from 'chai'
+import sinon from 'sinon';
 var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 import { normalizeQuery } from '../../test-helper/normalizeQuery';
