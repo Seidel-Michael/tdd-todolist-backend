@@ -1,10 +1,18 @@
 import { DbConnection } from './db/db-connection';
-import { createPool, sql } from 'slonik';
+import { createPool } from 'slonik';
+import { Api } from './api/api';
 
 const pool = createPool('postgresql://postgres:mysecretpassword@localhost:5432/todolist');
 const connection = new DbConnection(pool);
-//connection.addTodo('Ich bin ein Test');
 
-//connection.removeTodo('{76fe2d60-bb19-45d8-a96b-6fa94ba70bbd}');
+const api = new Api(connection);
 
-connection.getTodos().then((result) => console.log(result));
+const PORT = 8080;
+
+api.app.listen(PORT)
+    .on('error', err => {
+        console.error(err);
+    })
+    .on('listening', () => {
+        console.log(`Server listening on port ${PORT}`);
+    });
