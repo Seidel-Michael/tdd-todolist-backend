@@ -14,6 +14,9 @@ export class TodoRoutes
 
         TodoController.connection = connection;
 
+        this.router.get(`${BASE_URL}`, TodoController.getTodos);
         this.router.post(`${BASE_URL}`, TodoController.addTodo);
+        this.router.delete(`${BASE_URL}/:id`, TodoController.removeTodo);
+        this.router.put(`${BASE_URL}/:id`, TodoController.changeTodoState);
     }
 }

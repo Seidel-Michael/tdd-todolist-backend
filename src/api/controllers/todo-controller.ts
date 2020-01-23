@@ -25,14 +25,44 @@ export class TodoController {
     }
 
     static async removeTodo(ctx: ParameterizedContext) {
-        throw Error('Not implemented!')
+        try {
+            await TodoController.connection.removeTodo(ctx.params.id);
+            ctx.status = 204;
+        } catch (error) {
+            ctx.body = error.message;
+            ctx.status = 500;
+        }
     }
 
     static async changeTodoState(ctx: ParameterizedContext) {
-        throw Error('Not implemented!')
+        if (ctx.request.body.state === undefined) {
+            ctx.status = 400;
+            return
+        }
+
+        if (typeof ctx.request.body.state !== 'boolean') {
+            ctx.status = 400;
+            return
+        }
+
+        try {
+            await TodoController.connection.changeTodoState(ctx.params.id, ctx.request.body.state);
+            ctx.status = 204;
+        } catch (error) {
+            ctx.body = error.message;
+            ctx.status = 500;
+        }
     }
 
     static async getTodos(ctx: ParameterizedContext) {
-        throw Error('Not implemented!')
+        try {
+            const result = await TodoController.connection.getTodos();
+            ctx.set('Content-Type', 'application/json');
+            ctx.body = JSON.stringify(result);
+            ctx.status = 200;
+        } catch (error) {
+            ctx.body = error.message;
+            ctx.status = 500;
+        }
     }
 }
