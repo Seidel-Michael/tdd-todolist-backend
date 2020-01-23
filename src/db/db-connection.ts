@@ -1,4 +1,4 @@
-import { DatabasePoolType, sql, ConnectionError } from 'slonik';
+import { DatabasePoolType, sql, ConnectionError, NotFoundError } from 'slonik';
 
 export class DbConnection {
     private pool: DatabasePoolType;
@@ -10,18 +10,25 @@ export class DbConnection {
     public async addTodo(title: string) {
         try {
             await this.pool.query(sql`INSERT INTO todolist.todos(title, state) VALUES (${title}, true)`);
-        } catch (error) { 
-            if(error instanceof ConnectionError)
-            {
+        } catch (error) {
+            if (error instanceof ConnectionError) {
                 throw new Error('Connection to database failed.');
             }
-            
+
             throw new Error('Oops... something went wrong.');
         }
     }
 
     public async removeTodo(id: string) {
-        throw new Error('Not implemented!');
+        try {
+            await this.pool.query(sql`DELETE FROM todolist.todos WHERE id=${`{${id}}`}`);
+        } catch (error) {
+            if (error instanceof ConnectionError) {
+                throw new Error('Connection to database failed.');
+            } 
+            
+            throw new Error('Oops... something went wrong.');
+        }
     }
 
     public async changeTodoState(id: string, state: boolean) {
