@@ -9,7 +9,7 @@ import {normalizeQuery} from '../../test-helper/normalizeQuery';
 import {DatabasePoolType, ConnectionError} from 'slonik';
 
 
-describe.only('DbConnection', () => {
+describe('DbConnection', () => {
     let poolStub:any;
     let connection:DbConnection;
     beforeEach(() => {
