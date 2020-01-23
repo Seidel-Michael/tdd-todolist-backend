@@ -9,7 +9,7 @@ import { DbConnection } from './../../db/db-connection';
 import { Server } from 'http';
 
 
-describe.only('/api/v1', () => {
+describe('/api/v1', () => {
     let baseUrl = '/api/v1';
     let api: Api;
     let server: Server;
