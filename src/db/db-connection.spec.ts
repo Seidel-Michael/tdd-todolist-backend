@@ -38,7 +38,7 @@ describe('DbConnection', () => {
             await connection.addTodo('abcdefg');
 
             expect(poolStub.query.callCount).to.equal(1);
-            expect(normalizeQuery(poolStub.query.firstCall.args[0].sql)).to.equal('INSERT INTO todolist.todos(title, state) VALUES ($1, true)');
+            expect(normalizeQuery(poolStub.query.firstCall.args[0].sql)).to.equal('INSERT INTO todos(title, state) VALUES ($1, true)');
             expect(poolStub.query.firstCall.args[0].values).to.deep.equal(['abcdefg']);
         });
     });
@@ -60,7 +60,7 @@ describe('DbConnection', () => {
             await connection.removeTodo('id');
 
             expect(poolStub.query.callCount).to.equal(1);
-            expect(normalizeQuery(poolStub.query.firstCall.args[0].sql)).to.equal('DELETE FROM todolist.todos WHERE id=$1');
+            expect(normalizeQuery(poolStub.query.firstCall.args[0].sql)).to.equal('DELETE FROM todos WHERE id=$1');
             expect(poolStub.query.firstCall.args[0].values).to.deep.equal(['{id}']);
         });
 
@@ -84,7 +84,7 @@ describe('DbConnection', () => {
             await connection.changeTodoState('id', false);
 
             expect(poolStub.query.callCount).to.equal(1);
-            expect(normalizeQuery(poolStub.query.firstCall.args[0].sql)).to.equal('UPDATE todolist.todos SET state=$1 WHERE id=$2');
+            expect(normalizeQuery(poolStub.query.firstCall.args[0].sql)).to.equal('UPDATE todos SET state=$1 WHERE id=$2');
             expect(poolStub.query.firstCall.args[0].values).to.deep.equal([false, '{id}']);
         });
     });
@@ -130,7 +130,7 @@ describe('DbConnection', () => {
             const result = await connection.getTodos();
 
             expect(poolStub.any.callCount).to.equal(1);
-            expect(normalizeQuery(poolStub.any.firstCall.args[0].sql)).to.equal('SELECT * FROM todolist.todos');
+            expect(normalizeQuery(poolStub.any.firstCall.args[0].sql)).to.equal('SELECT * FROM todos');
 
             expect(result).to.deep.equal([
                 {
