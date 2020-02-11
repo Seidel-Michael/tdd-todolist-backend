@@ -2,23 +2,17 @@
   "name": "tdd-todolist-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "build/src/index.js",
   "scripts": {
-    "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
-    "start": "tsc && node dist/index.js",
-    "lint": "tslint -p tsconfig.json"
-  },
-  "nyc": {
-    "extension": [
-      ".ts"
-    ],
-    "exclude": [
-      "**/*.d.ts"
-    ],
-    "reporter": [
-      "lcov"
-    ],
-    "all": true
+    "test": "nyc mocha",
+    "start": "npm run compile && node .",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
   },
   "repository": {
     "type": "git",
@@ -31,14 +25,36 @@
   },
   "homepage": "https://github.com/Seidel-Michael/tdd-todolist-backend#readme",
   "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/chai": "^4.2.7",
+    "@types/chai-as-promised": "^7.1.2",
+    "@types/koa": "^2.11.0",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-router": "^7.4.0",
+    "@types/koa__cors": "^3.0.1",
     "@types/mocha": "^5.2.7",
+    "@types/node": "^13.1.8",
+    "@types/sinon": "^7.5.1",
+    "@types/slonik": "^21.4.0",
     "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.3.0",
+    "gts": "^1.1.2",
     "mocha": "^7.0.0",
     "nyc": "^15.0.0",
+    "sinon": "^8.1.1",
     "source-map-support": "^0.5.16",
     "ts-node": "^8.6.2",
-    "tslint": "^6.0.0-beta0",
+    "tslint-no-unused-expression-chai": "^0.1.4",
     "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@koa/cors": "^3.0.0",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^8.0.6",
+    "slonik": "^21.4.2"
   }
 }
