@@ -12,6 +12,7 @@ describe('/api/v1', () => {
   let api: Api;
   let server: Server;
   let connectionStub: sinon.SinonStubbedInstance<DbConnection>;
+
   beforeEach(done => {
     connectionStub = sinon.createStubInstance(DbConnection);
     api = new Api((connectionStub as unknown) as DbConnection);

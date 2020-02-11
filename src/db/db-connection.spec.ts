@@ -11,6 +11,7 @@ describe('DbConnection', () => {
   /* tslint:disable-next-line no-any */
   let poolStub: any;
   let connection: DbConnection;
+
   beforeEach(() => {
     poolStub = {} as DatabasePoolType;
     poolStub.query = sinon.stub();

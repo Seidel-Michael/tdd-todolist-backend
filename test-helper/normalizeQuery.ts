@@ -1,8 +1,8 @@
 const inlineCommentRule = /(.*?)--.*/g;
-const multilineCommentRule = /\/\*[\s\S]*?\*\//mg;
+const multilineCommentRule = /\/\*[\s\S]*?\*\//gm;
 const whiteSpaceRule = /\s+/g;
 
-export function normalizeQuery (input: string): string {
+export function normalizeQuery(input: string): string {
   return input
     .replace(inlineCommentRule, (match, p1) => {
       return p1;
@@ -10,4 +10,4 @@ export function normalizeQuery (input: string): string {
     .replace(multilineCommentRule, '')
     .replace(whiteSpaceRule, ' ')
     .trim();
-};
+}
