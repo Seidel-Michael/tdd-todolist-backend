@@ -4,21 +4,9 @@
   "description": "",
   "main": "dist/src/index.js",
   "scripts": {
-    "test": "nyc mocha -r ts-node/register src/**/*.spec.ts src/**/**/*.spec.ts",
+    "test": "nyc mocha",
     "start": "tsc && node dist/src/index.js",
     "lint": "tslint -p tsconfig.json"
-  },
-  "nyc": {
-    "extension": [
-      ".ts"
-    ],
-    "exclude": [
-      "**/*.d.ts"
-    ],
-    "reporter": [
-      "lcov"
-    ],
-    "all": true
   },
   "repository": {
     "type": "git",
@@ -31,6 +19,7 @@
   },
   "homepage": "https://github.com/Seidel-Michael/tdd-todolist-backend#readme",
   "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/chai": "^4.2.7",
     "@types/chai-as-promised": "^7.1.2",
     "@types/koa": "^2.11.0",
